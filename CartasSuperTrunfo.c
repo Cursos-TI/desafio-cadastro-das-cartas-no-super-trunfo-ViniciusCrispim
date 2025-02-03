@@ -5,6 +5,10 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
 // Siga os comentários para implementar cada parte do desafio.
 //Teste larissa
+float calcularDensidadePopulacional(int populacao, float area){
+        float densidade = (float) populacao / area;
+        return densidade;
+};
 
 int main() {
     // Sugestão: Defina variáveis separadas para cada atributo da cidade.
@@ -15,6 +19,7 @@ int main() {
     float area;
     float PIB;
     int qtdPontosTuristicos;
+    float densidadePopulacao;
 
     // Cadastro das Cartas:
     // Sugestão: Utilize a função scanf para capturar as entradas do usuário para cada atributo.
@@ -33,7 +38,9 @@ int main() {
     scanf("%f", &PIB);
     printf("Digite a quantidade de pontos turisticos: ");
     scanf("%d", &qtdPontosTuristicos);
-    
+
+    densidadePopulacao = calcularDensidadePopulacional(populacao, area);
+
     // Exibição dos Dados das Cartas:
     // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
     // Exiba os valores inseridos para cada atributo da cidade, um por linha.
@@ -44,6 +51,7 @@ int main() {
     printf("Area: %.2f km²\n", area);
     printf("PIB: $%.2f\n", PIB);
     printf("Quantidade de Pontos Turisticos: %d\n", qtdPontosTuristicos);
+    printf("A densidade populacional é de: %.2f\n", densidadePopulacao);
 
     return 0;
 };
