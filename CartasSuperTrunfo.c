@@ -8,7 +8,6 @@
     float area;
     float PIB;
     int qtdPontosTuristicos;
-    float densidadePopulacao, pibPerCapita;
     } Carta;
 
 //Função para calcular a Densidade Populacional
@@ -23,38 +22,40 @@ float calcularPibPerCapita (float pib, int populacao){
 }
 
 int main() {
+    //Variáveis do sistema:
     Carta carta1, carta2;
+    float densidadePopulacao, pibPerCapita;
 
-    // printf("Digite o Código da cidade: ");
-    // scanf("%s", carta1.codigoCidade);
-    // getchar();
-    // printf("Digite o nome da cidade: ");
-    // fgets(nomeCidade, sizeof(nomeCidade), stdin);
-    // fflush(stdin);
-    // printf("Digite a população da cidade: ");
-    // scanf("%d", &carta1.populacao);
-    // printf("Digite a area da cidade: ");
-    // scanf("%f", &carta1.area);
-    // printf("Digite o PIB da cidade: ");
-    // scanf("%f", &carta1.PIB);
-    // printf("Digite a quantidade de pontos turisticos: ");
-    // scanf("%d", &carta1.qtdPontosTuristicos);
+    //Entrada de dados: 
+    printf("Digite o Código da cidade: ");
+    scanf("%s", carta1.codigoCidade);
+    getchar();
+    printf("Digite o nome da cidade: ");
+    fgets(carta1.nomeCidade, sizeof(carta1.nomeCidade), stdin);
+    fflush(stdin);
+    printf("Digite a população da cidade: ");
+    scanf("%d", &carta1.populacao);
+    printf("Digite a area da cidade: ");
+    scanf("%f", &carta1.area);
+    printf("Digite o PIB da cidade: ");
+    scanf("%f", &carta1.PIB);
+    printf("Digite a quantidade de pontos turisticos: ");
+    scanf("%d", &carta1.qtdPontosTuristicos);
 
-    // densidadePopulacao = calcularDensidadePopulacional(carta1.populacao, carta1.area);
-    // pibPerCapita = calcularPibPerCapita(PIB, populacao);
+    //Calculo de atributos das cartas:
+    densidadePopulacao = calcularDensidadePopulacional(carta1.populacao, carta1.area);
+    pibPerCapita = calcularPibPerCapita(carta1.PIB, carta1.populacao);
 
     // Exibição dos Dados das Cartas:
-    // Sugestão: Utilize a função printf para exibir as informações das cartas cadastradas de forma clara e organizada.
-    // Exiba os valores inseridos para cada atributo da cidade, um por linha.
     printf("\nDados da Carta:\n");
-    // printf("Código: %s\n", codigoCidade);
-    // printf("Nome da Cidade: %s", nomeCidade);
-    // printf("População: %d habitantes\n", carta1.populacao);
-    // printf("Area: %.2f km²\n", carta1.area);
-    // printf("PIB: $%.2f\n", carta1.PIB);
-    // printf("Quantidade de Pontos Turisticos: %d\n", carta1.qtdPontosTuristicos);
-    // printf("A densidade populacional é de: %.2f\n", densidadePopulacao);
-    // printf("O PIB Per Capita é de: %.2f\n", pibPerCapita);
+    printf("Código: %s\n", carta1.codigoCidade);
+    printf("Nome da Cidade: %s", carta1.nomeCidade);
+    printf("População: %d habitantes\n", carta1.populacao);
+    printf("Area: %.2f km²\n", carta1.area);
+    printf("PIB: $ %.2f\n", carta1.PIB);
+    printf("Quantidade de Pontos Turisticos: %d\n", carta1.qtdPontosTuristicos);
+    printf("A densidade populacional: %.2f\n", densidadePopulacao);
+    printf("O PIB Per Capita: %.2f\n", pibPerCapita);
 
 
     return 0;
