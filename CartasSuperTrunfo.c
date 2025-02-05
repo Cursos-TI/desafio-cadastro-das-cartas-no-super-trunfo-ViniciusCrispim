@@ -1,30 +1,43 @@
 #include <stdio.h>
 
 //Definição da estrutura da carta
- typedef struct { 
+typedef struct { 
     char codigoCidade[4];
     char nomeCidade[20];
-    int populacao;
+    unsigned long int populacao;
     float area;
     float PIB;
     int qtdPontosTuristicos;
-    } Carta;
+    float densidadePopulacional;
+    double pibPerCapita;
+    float superPoder;
+} Carta;
 
-//Função para calcular a Densidade Populacional
-float calcularDensidadePopulacional(int populacao, float area){
-        float densidade = (float) populacao / area;
-        return densidade;
+
+void calcularPropriedades(Carta *carta){
+    carta->densidadePopulacional = carta->populacao / carta->area;
+    carta->pibPerCapita = carta->PIB / carta->populacao;
+    carta->superPoder = (float) carta->area + carta->populacao + carta->PIB + carta->qtdPontosTuristicos + carta->densidadePopulacional + 
+                        carta->pibPerCapita;
 };
-//Função para calcular o PIB Per Capita
-float calcularPibPerCapita (float pib, int populacao){
-    float pibPerCapita = pib / populacao;
-    return pibPerCapita;
+//Função de exibir dados da carta:
+void imprimirCarta (Carta carta){
+     // Exibição dos Dados das Cartas:
+    printf("\nDados da Carta:\n");
+    printf("Código: %s\n", carta.codigoCidade);
+    printf("Nome da Cidade: %s", carta.nomeCidade);
+    printf("População: %lu habitantes\n", carta.populacao);
+    printf("Area: %.2f km²\n", carta.area);
+    printf("PIB: $ %.2f\n", carta.PIB);
+    printf("Quantidade de Pontos Turisticos: %d\n", carta.qtdPontosTuristicos);
+    printf("A densidade populacional: %.2f\n", carta.densidadePopulacional);
+    printf("O PIB Per Capita: %.2f\n", carta.pibPerCapita);
+    printf("Super poder é de: %.2f\n", carta.superPoder);
 }
 
 int main() {
     //Variáveis do sistema:
     Carta carta1, carta2;
-    float densidadePopulacao, pibPerCapita;
 
     //Entrada de dados: 
     printf("Digite o Código da cidade: ");
@@ -34,7 +47,7 @@ int main() {
     fgets(carta1.nomeCidade, sizeof(carta1.nomeCidade), stdin);
     fflush(stdin);
     printf("Digite a população da cidade: ");
-    scanf("%d", &carta1.populacao);
+    scanf("%lu", &carta1.populacao);
     printf("Digite a area da cidade: ");
     scanf("%f", &carta1.area);
     printf("Digite o PIB da cidade: ");
@@ -43,20 +56,9 @@ int main() {
     scanf("%d", &carta1.qtdPontosTuristicos);
 
     //Calculo de atributos das cartas:
-    densidadePopulacao = calcularDensidadePopulacional(carta1.populacao, carta1.area);
-    pibPerCapita = calcularPibPerCapita(carta1.PIB, carta1.populacao);
+    calcularPropriedades(&carta1);
 
-    // Exibição dos Dados das Cartas:
-    printf("\nDados da Carta:\n");
-    printf("Código: %s\n", carta1.codigoCidade);
-    printf("Nome da Cidade: %s", carta1.nomeCidade);
-    printf("População: %d habitantes\n", carta1.populacao);
-    printf("Area: %.2f km²\n", carta1.area);
-    printf("PIB: $ %.2f\n", carta1.PIB);
-    printf("Quantidade de Pontos Turisticos: %d\n", carta1.qtdPontosTuristicos);
-    printf("A densidade populacional: %.2f\n", densidadePopulacao);
-    printf("O PIB Per Capita: %.2f\n", pibPerCapita);
-
+    imprimirCarta(carta1);
 
     return 0;
 };
